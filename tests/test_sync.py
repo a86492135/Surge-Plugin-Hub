@@ -58,6 +58,15 @@ class BuildTests(unittest.TestCase):
         text = (ROOT / 'modules/Belief-Weibo.sgmodule').read_text()
         self.assertNotIn('viber.com', text)
 
+    def test_homepage_empty_reply_does_not_shadow_patch(self):
+        source = '[Map Local]\n(?i)^https://m5\\.amap\\.com/ws/faas/amap-navigation/main-page-assets\\? data-type=text data="{}"\n(?i)^https://m5\\.amap\\.com/ws/faas/amap-navigation/main-page-aiqs\\? data-type=text data="{}"\n^https://ads.test/ data-type=text data="{}"\n[MITM]\nhostname = m5.amap.com\n'
+        entry = dict(self.config['modules']['amap'])
+        entry.pop('override')
+        rendered = sync.render_module('amap',entry,source,{},self.config)
+        self.assertNotIn('main-page-assets',rendered)
+        self.assertNotIn('main-page-aiqs',rendered)
+        self.assertIn('^https://ads.test/',rendered)
+
 if __name__ == '__main__':
     unittest.main()
 
