@@ -1,0 +1,39 @@
+{
+  "dependencies": {
+    "weibo_ads": {
+      "path": "Scripts/weibo/weibo_ads.js",
+      "ref": "main",
+      "repo": "fmz200/wool_scripts",
+      "revision": "ed3fb8e1267ce14279c5b234dd4e47b06162e512",
+      "sha256": "0f1f3eba5b2c96f4f089525ad033b578b6a18a2fd99eb95409e5b0816f4a4b34",
+      "url": "https://raw.githubusercontent.com/fmz200/wool_scripts/ed3fb8e1267ce14279c5b234dd4e47b06162e512/Scripts/weibo/weibo_ads.js"
+    },
+    "weibo_main": {
+      "path": "Scripts/weibo/weibo_main.js",
+      "ref": "main",
+      "repo": "fmz200/wool_scripts",
+      "revision": "4369e99cab0ad107afaaa25d3bab3bf11e4a4768",
+      "sha256": "b5e6312938588ccdc6fe50a77fd9db75c002a027dbfcebb4337d7353000a3b52",
+      "url": "https://raw.githubusercontent.com/fmz200/wool_scripts/4369e99cab0ad107afaaa25d3bab3bf11e4a4768/Scripts/weibo/weibo_main.js"
+    }
+  },
+  "modules": {
+    "amap": {
+      "path": "Surge/Module/Kelee/Amap_remove_ads.sgmodule",
+      "ref": "X",
+      "repo": "Repcz/Tool",
+      "revision": "59ad0107f4370d17596522ae78f9e9558e26964b",
+      "sha256": "1f6233f87e113015480c3719c6e7a62c68aadd138100195ab7a4ae699f2e3b8a",
+      "url": "https://raw.githubusercontent.com/Repcz/Tool/59ad0107f4370d17596522ae78f9e9558e26964b/Surge/Module/Kelee/Amap_remove_ads.sgmodule"
+    },
+    "weibo": {
+      "path": "Surge/module/weibo.module",
+      "ref": "main",
+      "repo": "fmz200/wool_scripts",
+      "revision": "4369e99cab0ad107afaaa25d3bab3bf11e4a4768",
+      "sha256": "cbb427d9bbf7fbe1c3b7a383693f2291eeb97cdf3107e13f9e902f7ca5a266fd",
+      "url": "https://raw.githubusercontent.com/fmz200/wool_scripts/4369e99cab0ad107afaaa25d3bab3bf11e4a4768/Surge/module/weibo.module"
+    }
+  },
+  "schema": 1
+}
