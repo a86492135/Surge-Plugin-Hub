@@ -1,0 +1,53 @@
+{
+  "repository": "a86492135/Surge-Plugin-Hub",
+  "category": "Belief’s Ad Block",
+  "author": "Belief",
+  "modules": {
+    "amap": {
+      "name": "Ads Bolck丨高德地图",
+      "desc": "高德地图去广告",
+      "version": "0.2.0",
+      "file": "modules/Belief-AMap.sgmodule",
+      "source": {
+        "repo": "Repcz/Tool",
+        "ref": "X",
+        "path": "Surge/Module/Kelee/Amap_remove_ads.sgmodule"
+      },
+      "override": "overrides/amap.sgmodule",
+      "license": "MIT",
+      "status": "扫街榜2026仍存在，待定位"
+    },
+    "weibo": {
+      "name": "Ads Bolck丨微博",
+      "desc": "微博去广告",
+      "version": "0.1.0",
+      "file": "modules/Belief-Weibo.sgmodule",
+      "source": {
+        "repo": "fmz200/wool_scripts",
+        "ref": "main",
+        "path": "Surge/module/weibo.module"
+      },
+      "license": "GPL-3.0-only",
+      "status": "待实机验证",
+      "preferred": {
+        "repo": "Repcz/Tool",
+        "ref": "X",
+        "directory": "Surge/Module/Kelee/",
+        "filename_pattern": "^(?:Sina_)?Weibo(?:_remove_ads)?\\.sgmodule$",
+        "loon_url": "https://kelee.one/Tool/Loon/Lpx/Weibo_remove_ads.lpx"
+      }
+    }
+  },
+  "dependencies": {
+    "weibo_ads": {
+      "repo": "fmz200/wool_scripts",
+      "ref": "main",
+      "path": "Scripts/weibo/weibo_ads.js"
+    },
+    "weibo_main": {
+      "repo": "fmz200/wool_scripts",
+      "ref": "main",
+      "path": "Scripts/weibo/weibo_main.js"
+    }
+  }
+}
