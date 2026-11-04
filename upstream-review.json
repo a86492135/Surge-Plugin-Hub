@@ -1,0 +1,14 @@
+{
+  "weibo": [
+    {
+      "kind": "surge",
+      "status": "not_found"
+    },
+    {
+      "http_status": 403,
+      "kind": "loon",
+      "status": "unavailable",
+      "url": "https://kelee.one/Tool/Loon/Lpx/Weibo_remove_ads.lpx"
+    }
+  ]
+}
