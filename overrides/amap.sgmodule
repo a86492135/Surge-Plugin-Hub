@@ -1,6 +1,9 @@
 # 自定义层由本仓库维护，上游同步不会覆盖。
 # 首页保留真实卡片结构，显式关闭右上角运营图标，避免空响应沿用缓存。
+[URL Rewrite]
+# 兼容抓包观察到的实时开屏接口；仅按专用广告路径拒绝请求。
+(?i)^https://(?:m5|amap-aos-info-nogw)\.amap\.com/ws/(?:aos|valueadded)/alimama/splash_screen(?:_rt)?(?:\?|$) _ reject
 [Script]
 Belief-AMap-Home = type=http-response, pattern=^https://(?:m5\.amap\.com/ws/faas/amap-navigation/main-page(?:-aiqs)?|sns\.amap\.com/ws/opc/tools/list)(?:\?|$), script-path=https://raw.githubusercontent.com/a86492135/Surge-Plugin-Hub/main/scripts/amap-home.js?v=20261104a, requires-body=true, timeout=10
 [MITM]
-hostname = %APPEND% m5.amap.com, sns.amap.com
+hostname = %APPEND% m5.amap.com, sns.amap.com, amap-aos-info-nogw.amap.com
