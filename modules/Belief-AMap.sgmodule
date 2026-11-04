@@ -1,7 +1,7 @@
 #!name=Ads Bolck丨高德地图
 #!desc=高德地图去广告
 #!author=Belief
-#!date=2026-11-04
+#!date=2026-11-05
 #!category=Belief’s Ad Block
 
 # SPDX-License-Identifier: MIT
@@ -68,6 +68,7 @@ http-response-jq (?i)^https://m5\.amap\.com/ws/smartui/near_recommend\? 'delpath
 
 [Map Local]
 (?i)^https://m5\.amap\.com/ws/valueadded/alimama/splash_screen\? data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+(?i)^https://m5\.amap\.com/ws/faas/amap-navigation/main-page-assets\? data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 (?i)^https://ai\.amap\.com/v1/ai_rec/home_qs\? data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 (?i)^https://m5-zb\.amap\.com/ws/promotion-web/resource(/home)?\? data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 (?i)^https://m5\.amap\.com/ws/info_bff/rankingCard\? data-type=text data="{}" status-code=200 header="Content-Type:application/json"
@@ -77,4 +78,4 @@ http-response-jq (?i)^https://m5\.amap\.com/ws/smartui/near_recommend\? 'delpath
 hostname = %APPEND% m5.amap.com, ai.amap.com, m5-zb.amap.com, center.amap.com, sns.amap.com, info.amap.com
 
 [Script]
-Belief-AMap-Home = type=http-response, pattern=^https://(?:m5\.amap\.com/ws/faas/amap-navigation/main-page(?:-assets|-aiqs)?|sns\.amap\.com/ws/opc/tools/list)(?:\?|$), script-path=https://raw.githubusercontent.com/a86492135/Surge-Plugin-Hub/main/scripts/amap-home.js?v=20261104a, requires-body=true, timeout=10
+Belief-AMap-Home = type=http-response, pattern=^https://(?:m5\.amap\.com/ws/faas/amap-navigation/main-page(?:-aiqs)?|sns\.amap\.com/ws/opc/tools/list)(?:\?|$), script-path=https://raw.githubusercontent.com/a86492135/Surge-Plugin-Hub/main/scripts/amap-home.js?v=20261104a, requires-body=true, timeout=10
