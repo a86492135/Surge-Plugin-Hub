@@ -4,6 +4,7 @@ from pathlib import Path
 import tempfile
 import unittest
 import sys
+import re
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -66,6 +67,16 @@ class BuildTests(unittest.TestCase):
         self.assertIn('main-page-assets',rendered)
         self.assertNotIn('main-page-aiqs',rendered)
         self.assertIn('^https://ads.test/',rendered)
+
+    def test_splash_rewrite_only_targets_ad_paths(self):
+        sections = sync.read_sections((ROOT / 'overrides/amap.sgmodule').read_text())
+        rule = next(line for line in sections['URL Rewrite'] if line.endswith(' _ reject'))
+        pattern = re.compile(rule.split()[0])
+        for url in ['https://amap-aos-info-nogw.amap.com/ws/aos/alimama/splash_screen_rt?ent=2', 'https://m5.amap.com/ws/valueadded/alimama/splash_screen?x=1']:
+            self.assertIsNotNone(pattern.search(url))
+        for url in ['https://m5.amap.com/ws/shield/frogserver/aocs/updatable/1?x=1','https://m5.amap.com/ws/faas/amap-navigation/main-page-aiqs?x=1','https://m5.amap.com/ws/aos/alimama/splash_screen_other?x=1','https://example.com/ws/aos/alimama/splash_screen_rt?x=1']:
+            self.assertIsNone(pattern.search(url))
+        self.assertIn('amap-aos-info-nogw.amap.com',sections['MITM'][0])
 
 if __name__ == '__main__':
     unittest.main()
