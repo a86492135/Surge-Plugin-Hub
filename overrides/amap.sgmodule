@@ -2,6 +2,6 @@
 # 旧 mainIcon/mainBubble 补丁已反馈无效，移除猜测性 /26 清理，保留上游原有行为。
 # 诊断只记录结构、目标词匹配路径及 HTTP 状态，不输出正文、查询参数、账号或位置。
 [Script]
-Belief-AMap-Inspect = type=http-response, pattern=^https://m5\.amap\.com/ws/(shield/frogserver/aocs/updatable/[0-9]+|promote/main-page/assets)(?:\?|$), script-path=https://raw.githubusercontent.com/a86492135/Surge-Plugin-Hub/main/scripts/amap-inspect.js, requires-body=true, timeout=10
+Belief-AMap-Inspect = type=http-response, pattern=^https://(?:m5(?:-x)?|amap-aos-info-nogw)\.amap\.com/(?:ws/|v[0-9]+/), script-path=https://raw.githubusercontent.com/a86492135/Surge-Plugin-Hub/main/scripts/amap-inspect.js?v=2, requires-body=true, timeout=10
 [MITM]
-hostname = %APPEND% m5.amap.com
+hostname = %APPEND% m5.amap.com, m5-x.amap.com, amap-aos-info-nogw.amap.com
