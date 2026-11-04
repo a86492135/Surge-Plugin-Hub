@@ -37,4 +37,15 @@ const startupDiagnostic = JSON.parse(result.logs[0].replace('[Belief][AMap] ',''
 assert.equal(startupDiagnostic.homepageShapes.startupCampaignResources.length,1);
 assert.equal(startupDiagnostic.homepageShapes.startupCampaignResources[0].fileDesc.sample[0].title,'[campaign string]');
 assert(!result.logs.join('').includes('PRIVATE_ASSET'));
+const homepage = {data:{mapBizList:[{dataKey:'UserAssetsVirtualCard',bizData:{newIcon:{switch:'1',lottieUrl:'animation',icon:'image',scheme:'link',other:'preserve'},balance:'preserve'}},{dataKey:'FindCarVirtualCard',bizData:{keep:true}}],cardList:[{dataKey:'ContinueNavigationCard'}]}};
+result = run('amap-home.js','https://m5.amap.com/ws/faas/amap-navigation/main-page-assets?token=PRIVATE_TOKEN',JSON.stringify(homepage));
+const cleanedHome = JSON.parse(result.done[0].body);
+assert.deepEqual(cleanedHome.data.mapBizList[0].bizData.newIcon,{switch:'0',lottieUrl:'',icon:'',scheme:'',other:'preserve'});
+assert.equal(cleanedHome.data.mapBizList[0].bizData.balance,'preserve');
+assert.deepEqual(cleanedHome.data.mapBizList[1],homepage.data.mapBizList[1]);
+assert.deepEqual(cleanedHome.data.cardList,homepage.data.cardList);
+assert(!result.logs.join('').includes('PRIVATE_TOKEN'));
+result = run('amap-home.js','https://sns.amap.com/ws/opc/tools/list?x=1',JSON.stringify({data:{category:[{tools:[{name:'扫街榜2026'},{name:'公交'},null]}],default:[{name:'扫街榜'},{name:'地铁'}],recommend:[{name:'高德扫街榜2026'}],other:'keep'}}));
+assert.deepEqual(JSON.parse(result.done[0].body),{data:{category:[{tools:[{name:'公交'},null]}],default:[{name:'地铁'}],recommend:[],other:'keep'}});
+for (const body of ['not-json','null','[]','{"data":{"other":1}}']) assert.deepEqual(run('amap-home.js','https://m5.amap.com/ws/faas/amap-navigation/main-page',body).done[0],{});
 console.log('Local script fixtures passed; unknown payloads pass through and private values are not logged.');
