@@ -6,7 +6,7 @@
     "amap": {
       "name": "Ads Bolck丨高德地图",
       "desc": "高德地图去广告",
-      "version": "0.3.2",
+      "version": "0.3.3",
       "file": "modules/Belief-AMap.sgmodule",
       "source": {
         "repo": "Repcz/Tool",
@@ -15,7 +15,7 @@
       },
       "override": "overrides/amap.sgmodule",
       "license": "MIT",
-      "status": "目标 iPhone 实测通过：开屏广告、扫街榜入口与双11横幅均已消失"
+      "status": "去广告已实测；17.01.1.2014 底栏只读诊断中，尚未隐藏"
     },
     "weibo": {
       "name": "Ads Bolck丨微博",
