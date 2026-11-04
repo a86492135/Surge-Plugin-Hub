@@ -1,10 +1,20 @@
 name: 模块问题
 description: 反馈模块无效或功能受影响
-title: "[高德] "
+title: "[模块问题] "
 body:
   - type: markdown
     attributes:
       value: "请遮挡账号与位置，不要上传原始 HAR、证书或个人配置。"
+  - type: dropdown
+    id: module
+    attributes:
+      label: 使用的模块
+      options:
+        - 高德地图
+        - 微博
+        - 飞常准业内版
+    validations:
+      required: true
   - type: input
     id: versions
     attributes:
