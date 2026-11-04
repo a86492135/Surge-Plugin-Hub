@@ -1,99 +1,73 @@
 <div align="center">
 
-![Surge插件中心 · Belief](assets/banner.svg)
+<img src="assets/banner.svg" alt="Surge插件中心 · Belief" width="100%" />
 
-# Surge插件中心
+**Belief 维护的 Surge 去广告模块**
 
-**更少推广，更专注的日常使用。**
+[![Checks](https://github.com/a86492135/Surge-Plugin-Hub/actions/workflows/validate.yml/badge.svg?branch=main)](https://github.com/a86492135/Surge-Plugin-Hub/actions/workflows/validate.yml)
+![Surge](https://img.shields.io/badge/Surge-iOS%20%2F%20macOS-61DACB?style=flat-square&labelColor=111827)
+![Belief](https://img.shields.io/badge/Maintained%20by-Belief-93C5FD?style=flat-square&labelColor=111827)
 
-![Maintainer](https://img.shields.io/badge/Maintainer-Belief-61DACB?style=flat-square&labelColor=111827)
-![Platform](https://img.shields.io/badge/Platform-Surge-93C5FD?style=flat-square&labelColor=111827)
-![Status](https://img.shields.io/badge/Status-待实机验证-FBBF24?style=flat-square&labelColor=111827)
-
-[浏览模块](#模块目录) · [安装指南](docs/INSTALL.md) · [更新记录](CHANGELOG.md) · [来源说明](THIRD_PARTY_NOTICES.md)
+[模块目录](#模块目录) · [安装指南](docs/INSTALL.md) · [更新记录](CHANGELOG.md) · [问题反馈](https://github.com/a86492135/Surge-Plugin-Hub/issues/new/choose)
 
 </div>
-
----
 
 ## 模块目录
 
-<table>
-<tr><td>
+<!-- MODULES:START -->
+| 模块 | 版本 / 更新 | 维护方式 | 验证状态 | 获取 |
+| --- | --- | --- | --- | --- |
+| **高德地图** | `0.3.4`<br>2026-11-05 | 上游检查 + PR | 部分实机通过 | [Raw 模块](https://raw.githubusercontent.com/a86492135/Surge-Plugin-Hub/main/modules/Belief-AMap.sgmodule) · [说明](docs/AMAP.md) |
+| **微博** | `0.1.0`<br>2026-11-04 | 上游检查 + PR | 待实机验证 | [Raw 模块](https://raw.githubusercontent.com/a86492135/Surge-Plugin-Hub/main/modules/Belief-Weibo.sgmodule) · [说明](docs/WEIBO.md) |
+| **飞常准业内版** | `0.1.0`<br>2026-11-05 | 手动维护 | 待实机验证 | [Raw 模块](https://raw.githubusercontent.com/a86492135/Surge-Plugin-Hub/main/modules/Belief-VariFlightPro.sgmodule) · [说明](docs/VARIFLIGHT.md) |
+<!-- MODULES:END -->
 
-### 🗺️ Ads Bolck丨高德地图
+统一分类：`Belief’s Ad Block`。点击 **Raw 模块** 获取安装地址，点击 **说明** 查看作用范围与验证记录。
 
-整合推广内容清理规则与首页运营图标补丁，保持单文件导入。
+| 🗺️ 地图 | 💬 社交 | ✈️ 出行 |
+| --- | --- | --- |
+| **高德地图**<br>开屏、首页、搜索等推广净化；保留首页图标与横幅补丁。 | **微博**<br>开屏、信息流、热搜、评论与个人页推广净化规则。 | **飞常准业内版**<br>用户提供的 14 条域名拦截规则；无需解密证书。 |
 
-**包含：** 开屏、首页推荐、搜索推荐、打车推广、地点推荐及我的页精简规则。
+高德已验证的范围为开屏广告、扫街榜2026入口及双11横幅；**隐藏“探索／长按说话／打车”底栏尚未实现**。微博和飞常准仍待实机验证。
 
-**版本：** `0.2.0`　 **更新：** `2026-11-04`　 **状态：** 实验版
+## 快速安装
 
-[下载模块](https://raw.githubusercontent.com/a86492135/Surge-Plugin-Hub/main/modules/Belief-AMap.sgmodule) · [查看详情](docs/AMAP.md) · [安装步骤](docs/INSTALL.md)
+1. 复制上表对应的 **Raw 模块** 链接。
+2. 在 Surge 的模块管理中，通过 URL 添加并启用。
+3. 根据[安装指南](docs/INSTALL.md)确认所需功能，再重启对应 App 检查效果。
 
-</td></tr>
-</table>
+高德、微博需要开启相应的 MITM、重写与脚本功能；飞常准业内版只含域名规则，不需要 MITM 或脚本。
 
-### 🐦 Ads Bolck丨微博
+## 更新方式
 
-开屏、信息流、热搜、评论区及个人页推广净化。运行脚本固定到具体上游版本，更新随 PR 审核。
+**高德 / 微博**：每天北京时间 **10:17** 检查上游，有变化时自动创建或更新 PR，审核合并后发布。GitHub 定时任务可能延迟。
 
-**分类：** `Belief’s Ad Block`　 **作者：** `Belief`　 **状态：** 待实机验证
+**飞常准业内版**：按用户提供的规则手动维护，日常同步只重建与检查本地规则，不接入外部上游。
 
-[下载微博模块](https://raw.githubusercontent.com/a86492135/Surge-Plugin-Hub/main/modules/Belief-Weibo.sgmodule) · [模块说明](docs/WEIBO.md)
+公开模块保持固定地址；更新后在 Surge 中刷新远程模块及相关脚本。模块目录由统一配置生成，随同步 PR 更新。
 
-> **验证状态**：模块通过 Surge 配置语法检查；新增图标补丁通过 16 个模拟数据用例。尚未完成目标手机上的去广告效果验证。“扫街榜 2026”已反馈仍存在，正在定位；不包含底栏只留“首页”和“我的”的功能。
+[同步机制](docs/SYNC.md) · [同步工作流](https://github.com/a86492135/Surge-Plugin-Hub/actions/workflows/sync-upstream.yml)
 
-## 开始使用
+## 仓库导航
 
-1. 打开模块文件，点击 **Raw / 原始文件** 获取完整模块。
-2. 在 Surge 的模块管理中导入文件，或在公开仓库中复制 Raw 链接，通过 URL 安装。
-3. 仅启用这一份高德净化模块，关闭其他重复模块。
-4. 确认 MITM、重写与脚本已开启，且手机信任当前 Surge 证书。
-5. 从后台彻底退出高德，再打开检查效果。
+| 内容 | 位置 |
+| --- | --- |
+| 可直接安装的模块 | [modules/](modules/) |
+| 安装、范围与验证记录 | [docs/](docs/) |
+| 手动维护的域名规则 | [rules/](rules/) |
+| 高德本地补丁 | [overrides/](overrides/) |
+| 名称、分类、来源与验证状态 | [config/modules.json](config/modules.json) |
+| 模块版本与文件摘要 | [manifest.json](manifest.json) · [校验和](checksums.sha256) |
 
-遇到问题时先停用本模块，重启高德确认是否恢复。请勿为了测试直接卸载高德，以免丢失离线地图与本地数据。
+<details>
+<summary>维护与贡献</summary>
 
-## 自动同步
+构建与检查位于 [scripts/](scripts/)，回归用例位于 [tests/](tests/)。提交规则前请阅读[贡献说明](CONTRIBUTING.md)。
 
-每天北京时间 **10:17** 检查一次（GitHub 排队可能延迟），也可在 Actions 中手动运行 **Sync upstream rules**。
+反馈时请注明模块、App / Surge 版本、入口与复现步骤。公开反馈中请遮挡账号和位置，不上传个人配置、证书私钥或原始抓包。
 
-来源优先级：指定目录的 Surge 模块 → 可莉 Loon 插件转译 → 已审阅的备用上游。当前可莉站点返回 403，因此微博暂用 fmz200 的固定版本；每日继续检查优先源。
-
-有变化时自动开 PR，**不会自动合并，也不会在合并前替换已发布模块**。Belief 名称、分类、简短描述与本地补丁由配置层保留。无法可靠转换的 Loon 语法会记录为待审核，不静默丢弃。
-
-[同步机制与转译边界](docs/SYNC.md) · [查看同步工作流](../../actions/workflows/sync-upstream.yml)
-
-## 维护约定
-
-- **一个模块，一个入口**：提供可直接导入的 `.sgmodule` 文件。
-- **明确验证状态**：区分静态检查、模拟数据测试与实机验证。
-- **记录每次改动**：变更范围与已知限制见模块说明和更新记录。
-- **只分享规则**：仓库不包含账号凭据、证书私钥、代理节点或个人抓包记录。
-
-## 目录结构
-
-```text
-Surge-Plugin-Hub/
-├── modules/                 Surge 模块
-├── assets/                  仓库视觉素材
-├── docs/                    安装与模块说明
-├── scripts/                 规则静态检查
-├── CHANGELOG.md             更新记录
-├── THIRD_PARTY_NOTICES.md    第三方来源与署名
-└── LICENSE                  授权文本
-```
-
-## 反馈与贡献
-
-请使用仓库的反馈模板说明 App 版本、Surge 版本、具体入口和复现步骤。截图请遮挡位置、账号等个人信息；公开 Issue 中不要上传原始 HAR。
-
-新增模块或规则前，请阅读 [贡献说明](CONTRIBUTING.md)。本仓库每天检查上游，只创建或更新同步 PR；经审核合并后才更新公开模块。手机端仍需刷新远程模块。
+</details>
 
 ---
 
-<div align="center">
-
-**Belief** · 用清楚的规则，留住需要的功能。
-
-</div>
+**Belief** · [来源与署名](THIRD_PARTY_NOTICES.md) · [仓库许可](LICENSE) · [微博组件许可](LICENSES/Weibo-GPL-3.0.txt)
