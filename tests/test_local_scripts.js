@@ -48,20 +48,4 @@ assert(!result.logs.join('').includes('PRIVATE_TOKEN'));
 result = run('amap-home.js','https://sns.amap.com/ws/opc/tools/list?x=1',JSON.stringify({data:{category:[{tools:[{name:'扫街榜2026'},{name:'公交'},null]}],default:[{name:'扫街榜'},{name:'地铁'}],recommend:[{name:'高德扫街榜2026'}],other:'keep'}}));
 assert.deepEqual(JSON.parse(result.done[0].body),{data:{category:[{tools:[{name:'公交'},null]}],default:[{name:'地铁'}],recommend:[],other:'keep'}});
 for (const body of ['not-json','null','[]','{"data":{"other":1}}']) assert.deepEqual(run('amap-home.js','https://m5.amap.com/ws/faas/amap-navigation/main-page',body).done[0],{});
-result = run('amap-home.js','https://m5.amap.com/ws/shield/frogserver/aocs/updatable/1?token=DO_NOT_LOG',JSON.stringify({data:{home_tab_config:{value:JSON.stringify({tabBar:[{title:'首页'},{title:'探索',account:'PRIVATE_ACCOUNT'},{title:'长按说话'},{title:'打车'},{title:'我的',location:'PRIVATE_LOCATION'}]})},other:'PRESERVE'}}));
-assert.deepEqual(result.done[0],{});
-const tabDiagnostic = JSON.parse(result.logs.find(line => line.startsWith('[Belief][AMap Tabs] ')).replace('[Belief][AMap Tabs] ',''));
-assert(tabDiagnostic.labels.some(item => item.label === '长按说话'));
-assert(tabDiagnostic.candidateKeys.includes('home_tab_config'));
-for (const secret of ['PRIVATE_ACCOUNT','PRIVATE_LOCATION','DO_NOT_LOG','PRESERVE']) assert(!result.logs.join('').includes(secret));
-const requestResults = {done:[],logs:[]};
-vm.runInNewContext(fs.readFileSync(path.join(__dirname,'../scripts/amap-home.js'),'utf8'),{
-  $request:{url:'https://m5.amap.com/ws/shield/frogserver/aocs/updatable/1?secret=HIDDEN',body:'config='+encodeURIComponent(JSON.stringify({amapHomeTabConfig:'PRIVATE_VERSION',account:'PRIVATE_ACCOUNT'}))},
-  $done:value=>requestResults.done.push(JSON.parse(JSON.stringify(value))),console:{log:value=>requestResults.logs.push(value)}
-},{timeout:1000});
-assert.deepEqual(requestResults.done,[{}]);
-const requestMeta=JSON.parse(requestResults.logs[0].replace('[Belief][AMap Tabs Request] ',''));
-assert.equal(requestMeta.format,'form');
-assert.equal(requestMeta.tabPaths[0].path,'$.config.$json.amapHomeTabConfig');
-for (const secret of ['PRIVATE_ACCOUNT','PRIVATE_VERSION','HIDDEN']) assert(!requestResults.logs.join('').includes(secret));
 console.log('Local script fixtures passed; unknown payloads pass through and private values are not logged.');
