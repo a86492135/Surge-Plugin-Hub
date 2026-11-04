@@ -28,8 +28,13 @@ assert.deepEqual(run('amap-inspect.js','https://m5.amap.com/test','binary-data')
 result = run('amap-inspect.js','https://m5-x.amap.com/ws/home?token=SECRET_TOKEN', JSON.stringify({data:{MaphomeOperateConfig:JSON.stringify({entry:{title:'扫街榜2026',url:'PRIVATE_URL',enabled:true}})}}));
 assert.deepEqual(result.done[0],{});
 const diagnostic = JSON.parse(result.logs[0].replace('[Belief][AMap] ',''));
-assert.equal(diagnostic.diagnosticVersion,2);
+assert.equal(diagnostic.diagnosticVersion,3);
 assert(diagnostic.campaignPaths.includes('$.data.MaphomeOperateConfig.$json.entry.title'));
 assert.equal(diagnostic.homepageShapes.MaphomeOperateConfig.$json.entry.enabled,'[boolean]');
 for (const secret of ['PRIVATE_URL','SECRET_TOKEN','扫街榜2026']) assert(!result.logs.join('').includes(secret));
+result = run('amap-inspect.js','https://m5.amap.com/ws/shield/dsp/app/startup/init',JSON.stringify({data:{app_conf_init:{datas:{memo:[{para1:'saojie',fileDesc:[{title:'扫街榜2026',url:'PRIVATE_ASSET'}]},{para1:'other'}]}}}}));
+const startupDiagnostic = JSON.parse(result.logs[0].replace('[Belief][AMap] ',''));
+assert.equal(startupDiagnostic.homepageShapes.startupCampaignResources.length,1);
+assert.equal(startupDiagnostic.homepageShapes.startupCampaignResources[0].fileDesc.sample[0].title,'[campaign string]');
+assert(!result.logs.join('').includes('PRIVATE_ASSET'));
 console.log('Local script fixtures passed; unknown payloads pass through and private values are not logged.');
