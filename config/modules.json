@@ -15,7 +15,22 @@
       },
       "override": "overrides/amap.sgmodule",
       "license": "MIT",
-      "status": "去广告已实测通过；17.01.1.2014 主底栏隐藏未实现，诊断已撤回"
+      "status": "去广告已实测通过；17.01.1.2014 主底栏隐藏未实现，诊断已撤回",
+      "label": "高德地图",
+      "docs": "docs/AMAP.md",
+      "verification": {
+        "level": "partial_device",
+        "client": "17.01.1.2014",
+        "date": "2026-11-05",
+        "passed": [
+          "开屏广告",
+          "右上角扫街榜2026入口",
+          "双11横幅"
+        ],
+        "not_implemented": [
+          "主底栏仅保留首页与我的"
+        ]
+      }
     },
     "weibo": {
       "name": "Ads Bolck丨微博",
@@ -35,6 +50,25 @@
         "directory": "Surge/Module/Kelee/",
         "filename_pattern": "^(?:Sina_)?Weibo(?:_remove_ads)?\\.sgmodule$",
         "loon_url": "https://kelee.one/Tool/Loon/Lpx/Weibo_remove_ads.lpx"
+      },
+      "label": "微博",
+      "docs": "docs/WEIBO.md",
+      "verification": {
+        "level": "static_only"
+      }
+    },
+    "variflight-pro": {
+      "name": "Ads Bolck丨飞常准业内版",
+      "label": "飞常准业内版",
+      "desc": "飞常准业内版去广告",
+      "version": "0.1.0",
+      "file": "modules/Belief-VariFlightPro.sgmodule",
+      "docs": "docs/VARIFLIGHT.md",
+      "local_rules": "rules/variflight-pro.list",
+      "license": "MIT",
+      "status": "用户提供的 14 条域名规则；待实机验证",
+      "verification": {
+        "level": "static_only"
       }
     }
   },
