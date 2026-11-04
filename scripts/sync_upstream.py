@@ -101,7 +101,7 @@ def render_module(key, spec, source, dependencies, config, root=ROOT):
     if key == 'amap':
         # Empty homepage replies can retain a cached icon. Keep the real card so
         # the targeted script can explicitly disable its newIcon switch.
-        replaced = ['/ws/faas/amap-navigation/main-page-assets\\?', '/ws/faas/amap-navigation/main-page-aiqs\\?']
+        replaced = ['/ws/faas/amap-navigation/main-page-aiqs\\?']
         sections['Map Local'] = [line for line in sections.get('Map Local', [])
                                  if not any(path in line and 'data="{}"' in line for path in replaced)]
     if key == 'weibo' and 'https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/weibo/' in source:
