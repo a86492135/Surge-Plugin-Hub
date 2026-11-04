@@ -10,7 +10,20 @@
       "path": "modules/Belief-AMap.sgmodule",
       "version": "0.3.4",
       "status": "去广告已实测通过；17.01.1.2014 主底栏隐藏未实现，诊断已撤回",
-      "device_verified": false,
+      "device_verified": true,
+      "verification": {
+        "level": "partial_device",
+        "client": "17.01.1.2014",
+        "date": "2026-11-05",
+        "passed": [
+          "开屏广告",
+          "右上角扫街榜2026入口",
+          "双11横幅"
+        ],
+        "not_implemented": [
+          "主底栏仅保留首页与我的"
+        ]
+      },
       "updated": "2026-11-05",
       "sha256": "bd25dc435e8931c5a58bcca56b3df6edf340eac48432958e3c71d05dd9cab17c"
     },
@@ -21,8 +34,24 @@
       "version": "0.1.0",
       "status": "待实机验证",
       "device_verified": false,
+      "verification": {
+        "level": "static_only"
+      },
       "updated": "2026-11-04",
       "sha256": "ce69ea876cfcd51f40fed2ab39294fccf3637f8c1747805f0837aa2f67420a42"
+    },
+    {
+      "id": "variflight-pro",
+      "name": "Ads Bolck丨飞常准业内版",
+      "path": "modules/Belief-VariFlightPro.sgmodule",
+      "version": "0.1.0",
+      "status": "用户提供的 14 条域名规则；待实机验证",
+      "device_verified": false,
+      "verification": {
+        "level": "static_only"
+      },
+      "updated": "2026-11-05",
+      "sha256": "5b9020d0aaa591ecacf0ff7bfd0a0d2a1026427a5051a54f7309454b07f1081e"
     }
   ]
 }
