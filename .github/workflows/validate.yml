@@ -18,4 +18,5 @@ jobs:
           python3 -m unittest discover -s tests
           node tests/test_local_scripts.js
           node --check scripts/amap-inspect.js
+          node --check scripts/amap-home.js
           node --check scripts/weibo-launch.js
