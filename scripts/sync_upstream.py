@@ -64,6 +64,22 @@ def fetch_source(spec):
     return body.decode('utf-8-sig'), {**spec, 'revision': revision, 'sha256': hashlib.sha256(body).hexdigest(), 'url': url}
 
 
+def load_local_rules(spec, root=ROOT):
+    """User-maintained domain rules are built locally, never replaced by an upstream."""
+    path = (root / spec['local_rules']).resolve()
+    if root.resolve() not in path.parents:
+        raise ValueError('Local rule source must stay inside the repository')
+    body = path.read_bytes()
+    lines = body.decode('utf-8-sig').splitlines()
+    rules = [line.strip() for line in lines if line.strip() and not line.lstrip().startswith('#')]
+    if not rules or any(not re.fullmatch(r'DOMAIN-SUFFIX,[a-z0-9.-]+,REJECT', line) for line in rules):
+        raise ValueError('Local source must contain reviewed domain-suffix reject rules')
+    return '[Rule]\n' + '\n'.join(rules) + '\n', {
+        'kind': 'local_rules', 'path': spec['local_rules'],
+        'sha256': hashlib.sha256(body).hexdigest(),
+    }
+
+
 def preferred_candidates(spec):
     """Prefer the user's Surge directory, then the user's exact Loon URL."""
     policy = spec.get('preferred')
@@ -145,9 +161,11 @@ def render_module(key, spec, source, dependencies, config, root=ROOT):
                     hosts.append(host.strip())
         elif line.strip() and not line.lstrip().startswith('#'):
             raise ValueError('Upstream MITM settings require review')
-    if not hosts:
+    populated = {name for name, lines in sections.items() if any(l.strip() and not l.lstrip().startswith('#') for l in lines)}
+    if not hosts and populated != {'Rule'}:
         raise ValueError('Missing MITM hostnames')
-    sections['MITM'] = ['hostname = %APPEND% ' + ', '.join(hosts)]
+    if hosts:
+        sections['MITM'] = ['hostname = %APPEND% ' + ', '.join(hosts)]
     # No mutable external executable references may bypass the PR review gate.
     for section, lines in sections.items():
         if section == 'Script':
@@ -180,10 +198,27 @@ def refresh_index(config, root=ROOT):
     for key, spec in config['modules'].items():
         data = (root / spec['file']).read_bytes()
         date = re.search(r'(?m)^#!date=(.+)$', data.decode()).group(1)
-        modules.append({'id': key, 'name': spec['name'], 'path': spec['file'], 'version': spec['version'], 'status': spec['status'], 'device_verified': False, 'updated': date, 'sha256': hashlib.sha256(data).hexdigest()})
+        verification = spec.get('verification', {'level': 'static_only'})
+        modules.append({'id': key, 'name': spec['name'], 'path': spec['file'], 'version': spec['version'], 'status': spec['status'], 'device_verified': verification['level'] in {'partial_device', 'device'}, 'verification': verification, 'updated': date, 'sha256': hashlib.sha256(data).hexdigest()})
     (root / 'checksums.sha256').write_text(''.join(m['sha256'] + '  ' + m['path'] + '\n' for m in modules))
     manifest = {'name': 'Surge插件中心', 'maintainer': config['author'], 'category': config['category'], 'updated': max(m['updated'] for m in modules), 'modules': modules}
     (root / 'manifest.json').write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + '\n')
+    readme = root / 'README.md'
+    if readme.exists():
+        rows = ['<!-- MODULES:START -->', '| 模块 | 版本 / 更新 | 维护方式 | 验证状态 | 获取 |', '| --- | --- | --- | --- | --- |']
+        for item in modules:
+            spec = config['modules'][item['id']]
+            label = spec.get('label', spec['name'].split('丨')[-1])
+            mode = '手动维护' if spec.get('local_rules') else '上游检查 + PR'
+            state = {'partial_device': '部分实机通过', 'device': '实机通过', 'static_only': '待实机验证'}[item['verification']['level']]
+            raw = 'https://raw.githubusercontent.com/' + config['repository'] + '/main/' + item['path']
+            docs = spec.get('docs', 'docs/INSTALL.md')
+            rows.append(f'| **{label}** | `{item["version"]}`<br>{item["updated"]} | {mode} | {state} | [Raw 模块]({raw}) · [说明]({docs}) |')
+        rows.append('<!-- MODULES:END -->')
+        old = readme.read_text()
+        new = re.sub(r'<!-- MODULES:START -->.*?<!-- MODULES:END -->', '\n'.join(rows), old, flags=re.S)
+        if new != old:
+            readme.write_text(new)
 
 
 def main():
@@ -203,6 +238,11 @@ def main():
     generated = {}
     reviews = {}
     for key, spec in config['modules'].items():
+        if spec.get('local_rules'):
+            source, record = load_local_rules(spec)
+            generated[spec['file']] = render_module(key, spec, source, dependencies, config)
+            lock['modules'][key] = record
+            continue
         attempts = preferred_candidates(spec)
         accepted = False
         for attempt in attempts:
