@@ -8,11 +8,11 @@
       "id": "amap",
       "name": "Ads Bolck丨高德地图",
       "path": "modules/Belief-AMap.sgmodule",
-      "version": "0.3.2",
-      "status": "目标 iPhone 实测通过：开屏广告、扫街榜入口与双11横幅均已消失",
+      "version": "0.3.3",
+      "status": "去广告已实测；17.01.1.2014 底栏只读诊断中，尚未隐藏",
       "device_verified": false,
       "updated": "2026-11-05",
-      "sha256": "7386efc6fdaec9b55b8855f33dc2c7aea75f2a02bc01e765e0490036fed3dcc3"
+      "sha256": "d42e5e187a02971f7823856053e5f6efc1490a8a52c6a5371b83a8bafcbb3f97"
     },
     {
       "id": "weibo",
