@@ -8,11 +8,11 @@
       "id": "amap",
       "name": "Ads Bolck丨高德地图",
       "path": "modules/Belief-AMap.sgmodule",
-      "version": "0.2.0",
+      "version": "0.2.1",
       "status": "扫街榜2026仍存在，待定位",
       "device_verified": false,
       "updated": "2026-11-04",
-      "sha256": "6e2a4cb2a5c0914363722288685169b8ab5f192552488bd0ddcc6da5b6226529"
+      "sha256": "62c05d6ada1dc2457358e8c512bea305e57183e81ca4469167b3e4c6783c7f22"
     },
     {
       "id": "weibo",
