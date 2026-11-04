@@ -1,5 +1,40 @@
 // Belief: targeted homepage cleanup. Field references are documented in THIRD_PARTY_NOTICES.md.
 (() => {
+  if (typeof $response === "undefined") {
+    try {
+      const raw = typeof $request.body === "string" ? $request.body : "";
+      const safeKey = key => /^[A-Za-z_][A-Za-z0-9_-]{0,63}$/.test(key) ? key : "[key]";
+      let format = raw ? "opaque" : "empty-or-binary", keys = [], parsed;
+      try { parsed = JSON.parse(raw); format = "json"; keys = Object.keys(parsed || {}).map(safeKey).slice(0, 30); } catch (_) {
+        if (/^[A-Za-z_][A-Za-z0-9_-]*=/.test(raw)) {
+          format = "form";
+          parsed = {};
+          for (const pair of raw.split("&").slice(0, 80)) {
+            const index = pair.indexOf("=");
+            if (index < 0) continue;
+            const key = decodeURIComponent(pair.slice(0, index));
+            keys.push(safeKey(key));
+            parsed[key] = decodeURIComponent(pair.slice(index + 1));
+          }
+        }
+      }
+      const tabPaths = [];
+      let visited = 0;
+      function find(value, path, depth) {
+        if (++visited > 3000 || depth > 8) return;
+        if (typeof value === "string" && value.length < 300000 && /^\s*[\[{]/.test(value)) {
+          try { find(JSON.parse(value), path + ".$json", depth + 1); } catch (_) {}
+        } else if (value && typeof value === "object") for (const key of Object.keys(value)) {
+          const child = (path + "." + (Array.isArray(value) ? "[]" : safeKey(key))).slice(0, 180);
+          if (key === "amapHomeTabConfig") tabPaths.push({path: child, type: typeof value[key], keys: value[key] && typeof value[key] === "object" ? Object.keys(value[key]).slice(0, 12).map(safeKey) : []});
+          find(value[key], child, depth + 1);
+        }
+      }
+      find(parsed, "$", 0);
+      console.log("[Belief][AMap Tabs Request] " + JSON.stringify({diagnosticVersion: 2, format, keys: keys.slice(0, 30), tabPaths: tabPaths.slice(0, 10)}));
+    } catch (_) { console.log("[Belief][AMap Tabs Request] metadata unavailable"); }
+    return $done({});
+  }
   // Temporary read-only layout diagnostics for AMap 17.01.1.2014.
   // Only structural keys, types and the five fixed tab labels may be logged.
   function inspectTabs(data) {
@@ -39,7 +74,9 @@
     visit(data, "$.data", 0);
     const keys = Object.keys(data);
     const endpoint = ($request.url.match(/^https:\/\/[^/]+([^?#]*)/) || [])[1] || "[unknown]";
-    console.log("[Belief][AMap Tabs] " + JSON.stringify({diagnosticVersion: 1, endpoint, dataKeys: keys.slice(0, 45).map(safeKey), candidateKeys: keys.filter(k => /tab|bottom|layout|redesign|home|speech|voice|ai_/i.test(k)).slice(0, 80).map(safeKey), labels: matches, structures}));
+    const tab = data.amapHomeTabConfig;
+    const tabState = tab && typeof tab === "object" ? {status: typeof tab.status === "number" ? tab.status : "[other]", emptyVersion: tab.version === "", emptyValue: tab.value === ""} : null;
+    console.log("[Belief][AMap Tabs] " + JSON.stringify({diagnosticVersion: 2, endpoint, tabState, dataKeys: keys.slice(0, 45).map(safeKey), candidateKeys: keys.filter(k => /tab|bottom|layout|redesign|home|speech|voice|ai_/i.test(k)).slice(0, 80).map(safeKey), labels: matches, structures}));
   }
   try {
     const obj = JSON.parse($response.body);
