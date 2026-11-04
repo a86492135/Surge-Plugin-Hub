@@ -1,13 +1,16 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="400" viewBox="0 0 1280 400" role="img" aria-labelledby="title desc">
-<title id="title">Surge插件中心 · Belief</title><desc id="desc">深蓝底色与薄荷绿线路，Surge 模块收藏与维护。</desc>
-<defs><linearGradient id="bg" x2="1" y2="1"><stop stop-color="#10192d"/><stop offset="1" stop-color="#152b3a"/></linearGradient><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#b8d7e3" stroke-opacity=".05"/></pattern></defs>
-<rect width="1280" height="400" rx="22" fill="url(#bg)"/><rect width="1280" height="400" rx="22" fill="url(#grid)"/>
-<path d="M815 400V280Q815 240 855 240H930Q970 240 970 200V0" stroke="#5bd6c1" stroke-opacity=".16" fill="none" stroke-width="38"/>
-<path d="M815 400V280Q815 240 855 240H930Q970 240 970 200V0" stroke="#5bd6c1" stroke-opacity=".5" fill="none" stroke-width="2" stroke-dasharray="7 12"/>
-<rect x="70" y="57" width="225" height="34" rx="17" fill="#5bd6c1" fill-opacity=".12" stroke="#5bd6c1" stroke-opacity=".35"/>
-<circle cx="90" cy="74" r="4" fill="#5bd6c1"/>
-<g font-family="-apple-system,BlinkMacSystemFont,Segoe UI,PingFang SC,Microsoft YaHei,sans-serif"><text x="105" y="79" fill="#8be6d4" font-size="13" font-weight="600" letter-spacing="2">BELIEF / MODULES</text>
-<text x="67" y="195" fill="#f5f8ff" font-size="66" font-weight="750" letter-spacing="1">Surge插件中心</text>
-<text x="71" y="247" fill="#adbecf" font-size="24">更少推广，更专注的日常使用。</text>
-<text x="72" y="336" fill="#708ca6" font-size="14" letter-spacing="3">CURATED RULES · CLEAR CHANGES</text></g>
-<g transform="translate(1014 105)"><rect width="146" height="146" rx="34" fill="#173c47" stroke="#60ddc7" stroke-opacity=".6"/><path d="M44 49H70V32H92V49H110V75H127V96H110V114H87V131H65V114H44V91H27V70H44Z" transform="translate(-4 -9)" fill="none" stroke="#80ead7" stroke-width="5" stroke-linejoin="round"/><circle cx="134" cy="137" r="19" fill="#5bd6c1"/><path d="m126 137 6 6 10-12" fill="none" stroke="#102630" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="360" viewBox="0 0 1280 360" role="img" aria-labelledby="title desc">
+<title id="title">Surge插件中心 · Belief</title><desc id="desc">高德地图、微博与飞常准业内版模块。统一入口，清楚记录，审核更新。</desc>
+<defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#0b1528"/><stop offset="1" stop-color="#142f3b"/></linearGradient><pattern id="grid" width="36" height="36" patternUnits="userSpaceOnUse"><path d="M36 0H0V36" fill="none" stroke="#a7cdd4" stroke-opacity=".05"/></pattern></defs>
+<rect width="1280" height="360" rx="24" fill="url(#bg)"/><rect width="1280" height="360" rx="24" fill="url(#grid)"/>
+<path d="M680 360V280Q680 240 720 240H755Q800 240 800 195V0" fill="none" stroke="#62dcc4" stroke-width="36" stroke-opacity=".055"/>
+<path d="M680 360V280Q680 240 720 240H755Q800 240 800 195V0" fill="none" stroke="#62dcc4" stroke-width="1.5" stroke-opacity=".25"/>
+<g font-family="-apple-system,BlinkMacSystemFont,Segoe UI,PingFang SC,Microsoft YaHei,sans-serif">
+<rect x="64" y="42" width="226" height="30" rx="15" fill="#5ed7c1" fill-opacity=".1" stroke="#5ed7c1" stroke-opacity=".3"/>
+<circle cx="82" cy="57" r="3.5" fill="#80e3d0"/><text x="96" y="62" fill="#9ae8d9" font-size="12" font-weight="600" letter-spacing="2.2">BELIEF / SURGE MODULES</text>
+<text x="60" y="158" fill="#f4f8ff" font-size="59" font-weight="750" letter-spacing="1">Surge插件中心</text>
+<text x="65" y="205" fill="#b0c4d1" font-size="22">更少打扰，留住需要的功能。</text>
+<g font-size="13" fill="#b6c9d4"><rect x="65" y="254" width="114" height="32" rx="8" fill="#203547"/><text x="89" y="275">统一模块入口</text><rect x="191" y="254" width="114" height="32" rx="8" fill="#203547"/><text x="215" y="275">清楚验证记录</text><rect x="317" y="254" width="114" height="32" rx="8" fill="#203547"/><text x="341" y="275">更新先经审核</text></g>
+<g transform="translate(866 43)"><rect width="348" height="78" rx="14" fill="#172e40" stroke="#365465" stroke-opacity=".65"/><rect x="17" y="17" width="44" height="44" rx="11" fill="#66d9c1" fill-opacity=".13"/><path d="m29 34 9-4 8 4 8-4v18l-8 4-8-4-9 4zM38 30v18m8-14v18" fill="none" stroke="#87e3cf" stroke-width="1.6" stroke-linejoin="round"/><text x="80" y="36" fill="#f1f6fc" font-size="18" font-weight="600">高德地图</text><text x="81" y="57" fill="#7e9ead" font-size="10" letter-spacing="2">MAP &amp; NAVIGATION</text><path d="m318 34 5 5-5 5" fill="none" stroke="#6d91a2" stroke-width="1.6"/></g>
+<g transform="translate(866 141)"><rect width="348" height="78" rx="14" fill="#172e40" stroke="#365465" stroke-opacity=".65"/><rect x="17" y="17" width="44" height="44" rx="11" fill="#efb177" fill-opacity=".13"/><path d="M30 29h21v16H39l-8 5v-5h-1zM35 35h11m-11 5h8" fill="none" stroke="#efc394" stroke-width="1.6" stroke-linejoin="round"/><text x="80" y="36" fill="#f1f6fc" font-size="18" font-weight="600">微博</text><text x="81" y="57" fill="#7e9ead" font-size="10" letter-spacing="2">SOCIAL &amp; FEEDS</text><path d="m318 34 5 5-5 5" fill="none" stroke="#6d91a2" stroke-width="1.6"/></g>
+<g transform="translate(866 239)"><rect width="348" height="78" rx="14" fill="#172e40" stroke="#365465" stroke-opacity=".65"/><rect x="17" y="17" width="44" height="44" rx="11" fill="#bca2ec" fill-opacity=".13"/><path d="m28 40 25-13-11 25-4-11zM38 41l15-14" fill="none" stroke="#cfbaf2" stroke-width="1.6" stroke-linejoin="round"/><text x="80" y="36" fill="#f1f6fc" font-size="18" font-weight="600">飞常准业内版</text><text x="81" y="57" fill="#7e9ead" font-size="10" letter-spacing="2">FLIGHTS &amp; TRAVEL</text><path d="m318 34 5 5-5 5" fill="none" stroke="#6d91a2" stroke-width="1.6"/></g>
+</g></svg>
