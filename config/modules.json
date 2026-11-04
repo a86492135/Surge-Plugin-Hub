@@ -6,7 +6,7 @@
     "amap": {
       "name": "Ads Bolck丨高德地图",
       "desc": "高德地图去广告",
-      "version": "0.3.3",
+      "version": "0.3.4",
       "file": "modules/Belief-AMap.sgmodule",
       "source": {
         "repo": "Repcz/Tool",
@@ -15,7 +15,7 @@
       },
       "override": "overrides/amap.sgmodule",
       "license": "MIT",
-      "status": "去广告已实测；17.01.1.2014 底栏只读诊断中，尚未隐藏"
+      "status": "去广告已实测通过；17.01.1.2014 主底栏隐藏未实现，诊断已撤回"
     },
     "weibo": {
       "name": "Ads Bolck丨微博",
