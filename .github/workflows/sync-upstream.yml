@@ -32,12 +32,13 @@ jobs:
           python3 -m unittest discover -s tests
           node tests/test_local_scripts.js
           node --check scripts/amap-inspect.js
+          node --check scripts/amap-home.js
           node --check scripts/weibo-launch.js
       - name: Open or update a PR only when files changed
         shell: bash
         run: |
           set -euo pipefail
-          git add -- modules/ manifest.json checksums.sha256 upstream.lock.json upstream-review.json
+          git add -- modules/ README.md manifest.json checksums.sha256 upstream.lock.json upstream-review.json
           if git diff --cached --quiet; then
             echo "No upstream changes; no PR created."
             exit 0
