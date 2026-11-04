@@ -54,6 +54,11 @@
     if (Array.isArray(memo)) {
       shapeCount = 0;
       shapes.startupCampaignResources = memo.filter(record => marker.test(JSON.stringify(record))).slice(0, 5).map(record => shape(record, 0));
+      const businessLabel = value => typeof value === "string" && /^[A-Za-z0-9_\-\u4e00-\u9fff\s]{1,120}$/.test(value) ? value : "[omitted]";
+      shapes.startupCampaignLabels = memo.filter(record => marker.test(JSON.stringify(record))).slice(0, 5).map(record => ({
+        campaignIdentifier: marker.test(record.para1 || "") ? businessLabel(record.para1) : "[omitted]",
+        matchedTitles: Array.isArray(record.fileDesc) ? record.fileDesc.filter(file => marker.test(file.title || "")).slice(0, 5).map(file => businessLabel(file.title)) : []
+      }));
     }
     const match = $request.url.match(/^https?:\/\/([^/?#]+)([^?#]*)/);
     const endpoint = match ? match[1] + match[2].replace(/\d{4,}/g, "[n]") : "[unknown]";
