@@ -54,4 +54,14 @@ const tabDiagnostic = JSON.parse(result.logs.find(line => line.startsWith('[Beli
 assert(tabDiagnostic.labels.some(item => item.label === '长按说话'));
 assert(tabDiagnostic.candidateKeys.includes('home_tab_config'));
 for (const secret of ['PRIVATE_ACCOUNT','PRIVATE_LOCATION','DO_NOT_LOG','PRESERVE']) assert(!result.logs.join('').includes(secret));
+const requestResults = {done:[],logs:[]};
+vm.runInNewContext(fs.readFileSync(path.join(__dirname,'../scripts/amap-home.js'),'utf8'),{
+  $request:{url:'https://m5.amap.com/ws/shield/frogserver/aocs/updatable/1?secret=HIDDEN',body:'config='+encodeURIComponent(JSON.stringify({amapHomeTabConfig:'PRIVATE_VERSION',account:'PRIVATE_ACCOUNT'}))},
+  $done:value=>requestResults.done.push(JSON.parse(JSON.stringify(value))),console:{log:value=>requestResults.logs.push(value)}
+},{timeout:1000});
+assert.deepEqual(requestResults.done,[{}]);
+const requestMeta=JSON.parse(requestResults.logs[0].replace('[Belief][AMap Tabs Request] ',''));
+assert.equal(requestMeta.format,'form');
+assert.equal(requestMeta.tabPaths[0].path,'$.config.$json.amapHomeTabConfig');
+for (const secret of ['PRIVATE_ACCOUNT','PRIVATE_VERSION','HIDDEN']) assert(!requestResults.logs.join('').includes(secret));
 console.log('Local script fixtures passed; unknown payloads pass through and private values are not logged.');
