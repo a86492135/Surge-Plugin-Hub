@@ -49,9 +49,15 @@
       }
     }
     scan(obj, "$", 0);
+    // Only expand campaign-matching startup resource records, never their raw values.
+    const memo = data.app_conf_init && data.app_conf_init.datas && data.app_conf_init.datas.memo;
+    if (Array.isArray(memo)) {
+      shapeCount = 0;
+      shapes.startupCampaignResources = memo.filter(record => marker.test(JSON.stringify(record))).slice(0, 5).map(record => shape(record, 0));
+    }
     const match = $request.url.match(/^https?:\/\/([^/?#]+)([^?#]*)/);
     const endpoint = match ? match[1] + match[2].replace(/\d{4,}/g, "[n]") : "[unknown]";
-    console.log("[Belief][AMap] " + JSON.stringify({diagnosticVersion: 2, endpoint, rootKeys: Object.keys(obj || {}).slice(0, 20).map(safeKey), dataKeys: Object.keys(data).slice(0, 100).map(safeKey), campaignPaths: [...matches].slice(0, 30), homepageShapes: shapes}));
-  } catch (_) { console.log("[Belief][AMap] diagnosticVersion=2 response is not readable JSON"); }
+    console.log("[Belief][AMap] " + JSON.stringify({diagnosticVersion: 3, endpoint, rootKeys: Object.keys(obj || {}).slice(0, 20).map(safeKey), dataKeys: Object.keys(data).slice(0, 100).map(safeKey), campaignPaths: [...matches].slice(0, 30), homepageShapes: shapes}));
+  } catch (_) { console.log("[Belief][AMap] diagnosticVersion=3 response is not readable JSON"); }
   $done({});
 })();
