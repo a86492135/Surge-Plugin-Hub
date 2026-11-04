@@ -1,16 +1,28 @@
 {
   "name": "Surge插件中心",
   "maintainer": "Belief",
+  "category": "Belief’s Ad Block",
   "updated": "2026-11-04",
   "modules": [
     {
       "id": "amap",
-      "name": "Belief的模块",
+      "name": "Ads Bolck丨高德地图",
       "path": "modules/Belief-AMap.sgmodule",
-      "version": "0.1.0",
-      "status": "experimental",
+      "version": "0.2.0",
+      "status": "扫街榜2026仍存在，待定位",
       "device_verified": false,
-      "sha256": "a06394ec146cea7dfa9e9fffffa5bd6ce0e9599b287c7dfffdeecf05ddf692da"
+      "updated": "2026-11-04",
+      "sha256": "6e2a4cb2a5c0914363722288685169b8ab5f192552488bd0ddcc6da5b6226529"
+    },
+    {
+      "id": "weibo",
+      "name": "Ads Bolck丨微博",
+      "path": "modules/Belief-Weibo.sgmodule",
+      "version": "0.1.0",
+      "status": "待实机验证",
+      "device_verified": false,
+      "updated": "2026-11-04",
+      "sha256": "ce69ea876cfcd51f40fed2ab39294fccf3637f8c1747805f0837aa2f67420a42"
     }
   ]
 }
