@@ -75,7 +75,11 @@ http-response-jq (?i)^https://m5\.amap\.com/ws/smartui/near_recommend\? 'delpath
 (?i)^https://m5\.amap\.com/ws/shield/search_business/process/marketingOperationStructured\? data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 
 [MITM]
-hostname = %APPEND% m5.amap.com, ai.amap.com, m5-zb.amap.com, center.amap.com, sns.amap.com, info.amap.com
+hostname = %APPEND% m5.amap.com, ai.amap.com, m5-zb.amap.com, center.amap.com, sns.amap.com, info.amap.com, amap-aos-info-nogw.amap.com
+
+[URL Rewrite]
+# 兼容抓包观察到的实时开屏接口；仅按专用广告路径拒绝请求。
+(?i)^https://(?:m5|amap-aos-info-nogw)\.amap\.com/ws/(?:aos|valueadded)/alimama/splash_screen(?:_rt)?(?:\?|$) _ reject
 
 [Script]
 Belief-AMap-Home = type=http-response, pattern=^https://(?:m5\.amap\.com/ws/faas/amap-navigation/main-page(?:-aiqs)?|sns\.amap\.com/ws/opc/tools/list)(?:\?|$), script-path=https://raw.githubusercontent.com/a86492135/Surge-Plugin-Hub/main/scripts/amap-home.js?v=20261104a, requires-body=true, timeout=10
