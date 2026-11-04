@@ -78,8 +78,41 @@ class BuildTests(unittest.TestCase):
             self.assertIsNone(pattern.search(url))
         self.assertIn('amap-aos-info-nogw.amap.com',sections['MITM'][0])
 
-if __name__ == '__main__':
-    unittest.main()
+    def test_local_rules_build_without_mitm_or_scripts(self):
+        entry = self.config['modules']['variflight-pro']
+        source, record = sync.load_local_rules(entry)
+        rendered = sync.render_module('variflight-pro',entry,source,{},self.config)
+        sections = sync.read_sections(rendered)
+        expected = [line for line in source.splitlines() if line.startswith('DOMAIN-SUFFIX,')]
+        self.assertEqual(sections['Rule'],expected)
+        self.assertNotIn('MITM',sections)
+        self.assertNotIn('Script',sections)
+        self.assertEqual(record['kind'],'local_rules')
+
+    def test_local_rules_cannot_read_outside_repository(self):
+        with tempfile.TemporaryDirectory() as temp:
+            with self.assertRaises(ValueError):
+                sync.load_local_rules({'local_rules':'../outside.list'},Path(temp))
+
+    def test_index_catalog_and_verification_share_metadata(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root=Path(temp)
+            (root/'modules').mkdir()
+            for entry in self.config['modules'].values():
+                (root/entry['file']).write_bytes((ROOT/entry['file']).read_bytes())
+            (root/'README.md').write_text('before\n<!-- MODULES:START -->\nstale\n<!-- MODULES:END -->\nafter\n')
+            sync.refresh_index(self.config,root)
+            manifest=json.loads((root/'manifest.json').read_text())
+            amap=next(item for item in manifest['modules'] if item['id']=='amap')
+            self.assertTrue(amap['device_verified'])
+            self.assertEqual(amap['verification']['level'],'partial_device')
+            self.assertIn('开屏广告',amap['verification']['passed'])
+            readme=(root/'README.md').read_text()
+            self.assertIn('飞常准业内版',readme)
+            self.assertIn('手动维护',readme)
+            self.assertNotIn('stale',readme)
+            self.assertTrue(readme.startswith('before\n'))
+            self.assertTrue(readme.endswith('after\n'))
 
 class LoonTranslationTests(unittest.TestCase):
     def test_script_rewrite_and_hosts(self):
@@ -96,3 +129,6 @@ class LoonTranslationTests(unittest.TestCase):
     def test_external_jqlang_requires_review(self):
         with self.assertRaises(ValueError):
             sync.convert_loon('[Script]\nhttp-response-jq ^https://api.example/ script-path=https://example.test/a.jq\n')
+
+if __name__ == '__main__':
+    unittest.main()
