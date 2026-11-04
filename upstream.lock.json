@@ -26,6 +26,11 @@
       "sha256": "1f6233f87e113015480c3719c6e7a62c68aadd138100195ab7a4ae699f2e3b8a",
       "url": "https://raw.githubusercontent.com/Repcz/Tool/59ad0107f4370d17596522ae78f9e9558e26964b/Surge/Module/Kelee/Amap_remove_ads.sgmodule"
     },
+    "variflight-pro": {
+      "kind": "local_rules",
+      "path": "rules/variflight-pro.list",
+      "sha256": "5dd31594211a214579be9c842e7485025e4253a0755ecef2176145ee7b680142"
+    },
     "weibo": {
       "path": "Surge/module/weibo.module",
       "ref": "main",
