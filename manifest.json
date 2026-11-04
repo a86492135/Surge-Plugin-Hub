@@ -8,11 +8,11 @@
       "id": "amap",
       "name": "Ads Bolck丨高德地图",
       "path": "modules/Belief-AMap.sgmodule",
-      "version": "0.3.3",
-      "status": "去广告已实测；17.01.1.2014 底栏只读诊断中，尚未隐藏",
+      "version": "0.3.4",
+      "status": "去广告已实测通过；17.01.1.2014 主底栏隐藏未实现，诊断已撤回",
       "device_verified": false,
       "updated": "2026-11-05",
-      "sha256": "e4e67712726d479f60e2fdc637c19b8de0104771697c3aad19db5dc87832aa6d"
+      "sha256": "bd25dc435e8931c5a58bcca56b3df6edf340eac48432958e3c71d05dd9cab17c"
     },
     {
       "id": "weibo",
