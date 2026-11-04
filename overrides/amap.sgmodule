@@ -4,9 +4,6 @@
 # 兼容抓包观察到的实时开屏接口；仅按专用广告路径拒绝请求。
 (?i)^https://(?:m5|amap-aos-info-nogw)\.amap\.com/ws/(?:aos|valueadded)/alimama/splash_screen(?:_rt)?(?:\?|$) _ reject
 [Script]
-Belief-AMap-Home = type=http-response, pattern=^https://(?:m5\.amap\.com/ws/faas/amap-navigation/main-page(?:-aiqs)?|sns\.amap\.com/ws/opc/tools/list)(?:\?|$), script-path=https://raw.githubusercontent.com/a86492135/Surge-Plugin-Hub/main/scripts/amap-home.js?v=20261105tabs2, requires-body=true, timeout=10
-# 临时只读诊断：寻找主底栏配置，不改动云控响应。
-Belief-AMap-Tabs-Inspect = type=http-response, pattern=^https://m5\.amap\.com/ws/shield/frogserver/aocs/updatable/(?:1|26)(?:\?|$), script-path=https://raw.githubusercontent.com/a86492135/Surge-Plugin-Hub/main/scripts/amap-home.js?v=20261105tabs2, requires-body=true, timeout=10
-Belief-AMap-Tabs-Request = type=http-request, pattern=^https://m5\.amap\.com/ws/shield/frogserver/aocs/updatable/(?:1|26)(?:\?|$), script-path=https://raw.githubusercontent.com/a86492135/Surge-Plugin-Hub/main/scripts/amap-home.js?v=20261105tabs2, requires-body=true, timeout=10
+Belief-AMap-Home = type=http-response, pattern=^https://(?:m5\.amap\.com/ws/faas/amap-navigation/main-page(?:-aiqs)?|sns\.amap\.com/ws/opc/tools/list)(?:\?|$), script-path=https://raw.githubusercontent.com/a86492135/Surge-Plugin-Hub/main/scripts/amap-home.js?v=20261105stable1, requires-body=true, timeout=10
 [MITM]
 hostname = %APPEND% m5.amap.com, sns.amap.com, amap-aos-info-nogw.amap.com
