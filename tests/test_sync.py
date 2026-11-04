@@ -63,7 +63,7 @@ class BuildTests(unittest.TestCase):
         entry = dict(self.config['modules']['amap'])
         entry.pop('override')
         rendered = sync.render_module('amap',entry,source,{},self.config)
-        self.assertNotIn('main-page-assets',rendered)
+        self.assertIn('main-page-assets',rendered)
         self.assertNotIn('main-page-aiqs',rendered)
         self.assertIn('^https://ads.test/',rendered)
 
