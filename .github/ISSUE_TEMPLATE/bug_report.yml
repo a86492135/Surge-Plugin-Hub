@@ -1,0 +1,29 @@
+name: 模块问题
+description: 反馈模块无效或功能受影响
+title: "[高德] "
+body:
+  - type: markdown
+    attributes:
+      value: "请遮挡账号与位置，不要上传原始 HAR、证书或个人配置。"
+  - type: input
+    id: versions
+    attributes:
+      label: App / Surge / 系统版本
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: 入口位置与复现步骤
+    validations:
+      required: true
+  - type: textarea
+    id: result
+    attributes:
+      label: 期望与实际结果
+    validations:
+      required: true
+  - type: textarea
+    id: comparison
+    attributes:
+      label: 停用模块后是否恢复？是否开启其他同类模块？
