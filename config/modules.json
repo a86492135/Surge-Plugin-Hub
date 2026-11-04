@@ -6,7 +6,7 @@
     "amap": {
       "name": "Ads Bolck丨高德地图",
       "desc": "高德地图去广告",
-      "version": "0.2.1",
+      "version": "0.3.0",
       "file": "modules/Belief-AMap.sgmodule",
       "source": {
         "repo": "Repcz/Tool",
@@ -15,7 +15,7 @@
       },
       "override": "overrides/amap.sgmodule",
       "license": "MIT",
-      "status": "扫街榜2026仍存在，待定位"
+      "status": "右上角图标定向补丁，待实机验证"
     },
     "weibo": {
       "name": "Ads Bolck丨微博",
