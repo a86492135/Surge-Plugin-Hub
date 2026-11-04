@@ -6,7 +6,7 @@
     "amap": {
       "name": "Ads Bolck丨高德地图",
       "desc": "高德地图去广告",
-      "version": "0.2.0",
+      "version": "0.2.1",
       "file": "modules/Belief-AMap.sgmodule",
       "source": {
         "repo": "Repcz/Tool",
