@@ -15,7 +15,7 @@
       },
       "override": "overrides/amap.sgmodule",
       "license": "MIT",
-      "status": "扫街榜入口已实测移除；顶部横幅修补待验证"
+      "status": "目标 iPhone 实测通过：扫街榜入口与双11横幅均已消失"
     },
     "weibo": {
       "name": "Ads Bolck丨微博",
