@@ -1,0 +1,24 @@
+#!name=Ads Bolck丨飞常准业内版
+#!desc=飞常准业内版去广告
+#!author=Belief
+#!date=2026-11-05
+#!category=Belief’s Ad Block
+
+# SPDX-License-Identifier: MIT
+# 维护与来源记录见仓库 THIRD_PARTY_NOTICES.md。
+
+[Rule]
+DOMAIN-SUFFIX,pangolin-sdk-toutiao1.com,REJECT
+DOMAIN-SUFFIX,pglstatp-toutiao.com,REJECT
+DOMAIN-SUFFIX,ugdtimg.com,REJECT
+DOMAIN-SUFFIX,gdtimg.com,REJECT
+DOMAIN-SUFFIX,e.qq.com,REJECT
+DOMAIN-SUFFIX,gdt.qq.com,REJECT
+DOMAIN-SUFFIX,pangolin-sdk-toutiao-b.com,REJECT
+DOMAIN-SUFFIX,dashisx.com,REJECT
+DOMAIN-SUFFIX,gifshow.com,REJECT
+DOMAIN-SUFFIX,e.kuaishou.com,REJECT
+DOMAIN-SUFFIX,pangolin-sdk-toutiao.com,REJECT
+DOMAIN-SUFFIX,adwangmai.com,REJECT
+DOMAIN-SUFFIX,beizi.biz,REJECT
+DOMAIN-SUFFIX,66mobi.com,REJECT
