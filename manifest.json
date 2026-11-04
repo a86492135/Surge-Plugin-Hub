@@ -9,7 +9,7 @@
       "name": "Ads Bolck丨高德地图",
       "path": "modules/Belief-AMap.sgmodule",
       "version": "0.3.1",
-      "status": "扫街榜入口已实测移除；顶部横幅修补待验证",
+      "status": "目标 iPhone 实测通过：扫街榜入口与双11横幅均已消失",
       "device_verified": false,
       "updated": "2026-11-05",
       "sha256": "b831e71743fe2445c58eb624b45a5a7912e04948b156c2b42c027cf51bb0a8fa"
