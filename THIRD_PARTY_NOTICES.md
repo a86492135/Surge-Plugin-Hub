@@ -27,3 +27,8 @@
 本次维护移除皮肤与会员图标功能、无关域名及冲突的 SDK 拦截，并用 Belief 自编的开屏清理脚本替换第三个外部脚本。高德和微博的元数据作者 Belief 均表示本仓库维护者，第三方基础规则不是重新标记为独立原创。
 
 优先来源按用户指定设置为 Repcz/Tool 的 Surge/Module/Kelee 目录，其次为官方 Loon 插件转译。可莉微博 Loon 站点当前返回 403，尚未把不可读内容宣称为已转译。
+
+## 首页扫街榜定向补丁的字段参考
+
+- 参考：[ifls4816/ios-qx-script，固定版本 Amap.js](https://github.com/ifls4816/ios-qx-script/blob/7d55231219a471d9cee09383b92c7a46629b4933/loon/scripts/Amap.js#L126)。该实现说明了 UserAssetsVirtualCard.newIcon 和工具列表与首页右上角图标的关系，以及空列表可能沿用缓存的情况。
+- 本仓库独立编写 `scripts/amap-home.js`，仅实现相关字段清理、异常原样通过及计数日志，没有引入或执行完整第三方脚本。该参考不表示当前高德版本已实机验证。
