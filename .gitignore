@@ -1,0 +1,15 @@
+# Keep personal captures and configuration out of this repository.
+.DS_Store
+__pycache__/
+*.pyc
+.env
+.env.*
+*.har
+*.pcap
+*.pcapng
+*.p12
+*.pfx
+*.key
+*.pem
+*.conf
+work/

@@ -1,0 +1,16 @@
+{
+  "name": "Surge插件中心",
+  "maintainer": "Belief",
+  "updated": "2026-11-04",
+  "modules": [
+    {
+      "id": "amap",
+      "name": "Belief的模块",
+      "path": "modules/Belief-AMap.sgmodule",
+      "version": "0.1.0",
+      "status": "experimental",
+      "device_verified": false,
+      "sha256": "a06394ec146cea7dfa9e9fffffa5bd6ce0e9599b287c7dfffdeecf05ddf692da"
+    }
+  ]
+}

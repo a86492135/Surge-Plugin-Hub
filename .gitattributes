@@ -1,0 +1,3 @@
+* text=auto
+*.sgmodule text eol=lf
+*.svg text eol=lf
