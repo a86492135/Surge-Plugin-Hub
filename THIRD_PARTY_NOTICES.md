@@ -38,3 +38,7 @@
 - 原始域名规则由仓库使用者在本次维护中提供，共 14 条，域名与顺序原样保留。
 - 本仓库补全 Belief 名称、分类、简短描述、日期和安装说明；没有引入第三方脚本或外部同步源。
 - 手动来源：`rules/variflight-pro.list`；发布模块：`modules/Belief-VariFlightPro.sgmodule`。
+
+## 软件去广告合集
+
+本组件以独立授权收录，不适用仓库根目录 MIT 许可。必要版权、署名与授权信息集中保留在 [BlockAds-NOTICE](LICENSES/BlockAds-NOTICE.txt)。
