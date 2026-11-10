@@ -94,6 +94,28 @@ class BuildTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 sync.load_local_rules({'local_rules':'../outside.list'},Path(temp))
 
+    def test_manual_snapshot_keeps_imported_content(self):
+        entry=self.config['modules']['blockads']
+        text,record=sync.load_manual_snapshot(entry)
+        self.assertEqual(text,(ROOT/entry['file']).read_text())
+        self.assertEqual(record['kind'],'manual_snapshot')
+        lines=[line for line in sync.read_sections(text)['Script'] if line.strip() and not line.startswith('#')]
+        self.assertEqual(len(lines),32)
+        self.assertEqual(len(set(line.split('=',1)[0] for line in lines)),32)
+        self.assertNotIn('{{{',text)
+
+    def test_manual_snapshot_runtime_changes_require_review(self):
+        entry=dict(self.config['modules']['blockads'])
+        with tempfile.TemporaryDirectory() as temp:
+            root=Path(temp)
+            target=root/entry['file']
+            target.parent.mkdir(parents=True)
+            text=(ROOT/entry['file']).read_text()
+            first=entry['runtime_scripts'][0]
+            target.write_text(text.replace(first,'https://example.invalid/unreviewed.js'))
+            with self.assertRaises(ValueError):
+                sync.load_manual_snapshot(entry,root)
+
     def test_index_catalog_and_verification_share_metadata(self):
         with tempfile.TemporaryDirectory() as temp:
             root=Path(temp)
