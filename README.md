@@ -20,6 +20,7 @@
 | **高德地图** | `0.3.4`<br>2026-11-05 | 上游检查 + PR | 部分实机通过 | [Raw 模块](https://raw.githubusercontent.com/a86492135/Surge-Plugin-Hub/main/modules/Belief-AMap.sgmodule) · [说明](docs/AMAP.md) |
 | **微博** | `0.1.0`<br>2026-11-04 | 上游检查 + PR | 待实机验证 | [Raw 模块](https://raw.githubusercontent.com/a86492135/Surge-Plugin-Hub/main/modules/Belief-Weibo.sgmodule) · [说明](docs/WEIBO.md) |
 | **飞常准业内版** | `0.1.0`<br>2026-11-05 | 手动维护 | 待实机验证 | [Raw 模块](https://raw.githubusercontent.com/a86492135/Surge-Plugin-Hub/main/modules/Belief-VariFlightPro.sgmodule) · [说明](docs/VARIFLIGHT.md) |
+| **软件去广告合集** | `0.1.0`<br>2026-11-10 | 手动快照 | 待实机验证 | [Raw 模块](https://raw.githubusercontent.com/a86492135/Surge-Plugin-Hub/main/modules/Belief-BlockAds.sgmodule) · [说明](docs/BLOCKADS.md) |
 <!-- MODULES:END -->
 
 统一分类：`Belief’s Ad Block`。点击 **Raw 模块** 获取安装地址，点击 **说明** 查看作用范围与验证记录。
@@ -28,7 +29,9 @@
 | --- | --- | --- |
 | **高德地图**<br>开屏、首页、搜索等推广净化；保留首页图标与横幅补丁。 | **微博**<br>开屏、信息流、热搜、评论与个人页推广净化规则。 | **飞常准业内版**<br>用户提供的 14 条域名拦截规则；无需解密证书。 |
 
-高德已验证的范围为开屏广告、扫街榜2026入口及双11横幅；**隐藏“探索／长按说话／打车”底栏尚未实现**。微博和飞常准仍待实机验证。
+高德已验证的范围为开屏广告、扫街榜2026入口及双11横幅；**隐藏“探索／长按说话／打车”底栏尚未实现**。微博、飞常准和软件去广告合集仍待实机验证。
+
+**软件去广告合集**覆盖多个 App，采用手动兼容性快照；外部脚本与验证边界见[模块说明](docs/BLOCKADS.md)。
 
 ## 快速安装
 
@@ -36,13 +39,15 @@
 2. 在 Surge 的模块管理中，通过 URL 添加并启用。
 3. 根据[安装指南](docs/INSTALL.md)确认所需功能，再重启对应 App 检查效果。
 
-高德、微博需要开启相应的 MITM、重写与脚本功能；飞常准业内版只含域名规则，不需要 MITM 或脚本。
+高德、微博及软件去广告合集需要开启相应的 MITM、重写与脚本功能；飞常准业内版只含域名规则，不需要 MITM 或脚本。
 
 ## 更新方式
 
 **高德 / 微博**：每天北京时间 **10:17** 检查上游，有变化时自动创建或更新 PR，审核合并后发布。GitHub 定时任务可能延迟。
 
-**飞常准业内版**：按用户提供的规则手动维护，日常同步只重建与检查本地规则，不接入外部上游。
+**飞常准业内版**：按用户提供的规则手动维护，日常同步只重建与检查本地规则。
+
+**软件去广告合集**：手动快照维护，日常同步只检查并保留；运行脚本仍依赖模块中的外部地址，不受本仓库 PR 更新门控。
 
 公开模块保持固定地址；更新后在 Surge 中刷新远程模块及相关脚本。模块目录由统一配置生成，随同步 PR 更新。
 
@@ -70,4 +75,4 @@
 
 ---
 
-**Belief** · [来源与署名](THIRD_PARTY_NOTICES.md) · [仓库许可](LICENSE) · [微博组件许可](LICENSES/Weibo-GPL-3.0.txt)
+**Belief** · [来源与署名](THIRD_PARTY_NOTICES.md) · [仓库许可](LICENSE) · [微博组件许可](LICENSES/Weibo-GPL-3.0.txt) · [合集独立许可](LICENSES/BlockAds-NOTICE.txt)
