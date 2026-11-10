@@ -70,6 +70,40 @@
       "verification": {
         "level": "static_only"
       }
+    },
+    "blockads": {
+      "name": "Ads Bolck丨软件去广告合集",
+      "label": "软件去广告合集",
+      "desc": "常用软件去广告",
+      "version": "0.1.0",
+      "file": "modules/Belief-BlockAds.sgmodule",
+      "docs": "docs/BLOCKADS.md",
+      "manual_snapshot": true,
+      "runtime_scripts": [
+        "https://kelee.one/Resource/JavaScript/12306/12306_remove_ads.js",
+        "https://kelee.one/Resource/JavaScript/AliYunDrive/AliYunDrive_remove_ads.js",
+        "https://kelee.one/Resource/JavaScript/AutoHome/AutoHome_remove_ads.js",
+        "https://kelee.one/Resource/JavaScript/BaiduSearch/BaiduSearchHomePage_remove_ads.js",
+        "https://kelee.one/Resource/JavaScript/Chelaile/Chelaile_remove_ads.js",
+        "https://kelee.one/Resource/JavaScript/ColorfulClouds/ColorfulClouds_remove_ads.js",
+        "https://kelee.one/Resource/JavaScript/IThome/IThome_remove_ads.js",
+        "https://kelee.one/Resource/JavaScript/JD/JD_remove_ads.js",
+        "https://kelee.one/Resource/JavaScript/MeituMYXJ/MeituMYXJ_remove_ads.js",
+        "https://kelee.one/Resource/JavaScript/NeteaseCloudMusic/NeteaseCloudMusic_remove_ads.js",
+        "https://kelee.one/Resource/JavaScript/NeteaseNews/NeteaseNews_remove_ads.js",
+        "https://kelee.one/Resource/JavaScript/PinDuoDuo/PinDuoDuo_remove_ads.js",
+        "https://kelee.one/Resource/JavaScript/SodaMusic/SodaMusic_remove_ads.js",
+        "https://kelee.one/Resource/JavaScript/Soul/Soul_remove_ads.js",
+        "https://kelee.one/Resource/JavaScript/Taobao/Taobao_remove_ads.js",
+        "https://kelee.one/Resource/JavaScript/Tieba/tieba-proto.js",
+        "https://kelee.one/Resource/JavaScript/Umetrip/Umetrip_remove_ads.js",
+        "https://raw.githubusercontent.com/Keywos/rule/ca09c0b4c7ebf0cea8cbda84b5d688efe6da2bc4/JS/aisi.js"
+      ],
+      "license": "LicenseRef-ThirdParty-Permission",
+      "status": "配置兼容性修订版；外部脚本未全部核验，待实机验证",
+      "verification": {
+        "level": "static_only"
+      }
     }
   },
   "dependencies": {
