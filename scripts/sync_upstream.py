@@ -80,6 +80,34 @@ def load_local_rules(spec, root=ROOT):
     }
 
 
+def load_manual_snapshot(spec, root=ROOT):
+    """Keep reviewed imported bundles separate from managed upstream modules."""
+    path = (root / spec['file']).resolve()
+    if root.resolve() not in path.parents:
+        raise ValueError('Snapshot must stay inside the repository')
+    body = path.read_bytes()
+    text = body.decode('utf-8-sig')
+    sections = read_sections(text)
+    scripts = [line for line in sections.get('Script', []) if line.strip() and not line.lstrip().startswith('#')]
+    names = [line.split('=', 1)[0].strip() for line in scripts]
+    if len(names) != len(set(names)):
+        raise ValueError('Snapshot script names must be unique')
+    urls = set()
+    for line in scripts:
+        match = re.search(r'script-path=([^,\s]+)', line)
+        if not match:
+            raise ValueError('Snapshot script has no URL')
+        urls.add(match[1])
+    if urls != set(spec.get('runtime_scripts', [])):
+        raise ValueError('Snapshot runtime dependencies require explicit review')
+    if re.search(r'\{\{\{[^}]+\}\}\}', text):
+        raise ValueError('Snapshot has unresolved module arguments')
+    for field, expected in [('name', spec['name']), ('desc', spec['desc'])]:
+        if not re.search(r'^#!' + field + '=' + re.escape(expected) + '$', text, re.M):
+            raise ValueError('Snapshot metadata differs from the catalog')
+    return text, {'kind': 'manual_snapshot', 'path': spec['file'], 'sha256': hashlib.sha256(body).hexdigest()}
+
+
 def preferred_candidates(spec):
     """Prefer the user's Surge directory, then the user's exact Loon URL."""
     policy = spec.get('preferred')
@@ -209,7 +237,7 @@ def refresh_index(config, root=ROOT):
         for item in modules:
             spec = config['modules'][item['id']]
             label = spec.get('label', spec['name'].split('丨')[-1])
-            mode = '手动维护' if spec.get('local_rules') else '上游检查 + PR'
+            mode = '手动快照' if spec.get('manual_snapshot') else ('手动维护' if spec.get('local_rules') else '上游检查 + PR')
             state = {'partial_device': '部分实机通过', 'device': '实机通过', 'static_only': '待实机验证'}[item['verification']['level']]
             raw = 'https://raw.githubusercontent.com/' + config['repository'] + '/main/' + item['path']
             docs = spec.get('docs', 'docs/INSTALL.md')
@@ -238,6 +266,9 @@ def main():
     generated = {}
     reviews = {}
     for key, spec in config['modules'].items():
+        if spec.get('manual_snapshot'):
+            generated[spec['file']], lock['modules'][key] = load_manual_snapshot(spec)
+            continue
         if spec.get('local_rules'):
             source, record = load_local_rules(spec)
             generated[spec['file']] = render_module(key, spec, source, dependencies, config)
