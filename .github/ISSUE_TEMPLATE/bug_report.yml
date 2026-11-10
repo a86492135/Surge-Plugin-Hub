@@ -13,6 +13,7 @@ body:
         - 高德地图
         - 微博
         - 飞常准业内版
+        - 软件去广告合集
     validations:
       required: true
   - type: input
