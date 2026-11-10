@@ -26,6 +26,11 @@
       "sha256": "1f6233f87e113015480c3719c6e7a62c68aadd138100195ab7a4ae699f2e3b8a",
       "url": "https://raw.githubusercontent.com/Repcz/Tool/59ad0107f4370d17596522ae78f9e9558e26964b/Surge/Module/Kelee/Amap_remove_ads.sgmodule"
     },
+    "blockads": {
+      "kind": "manual_snapshot",
+      "path": "modules/Belief-BlockAds.sgmodule",
+      "sha256": "ca4643380f1d2a2557dabae3ac4356efa7e1d7accc18311e8c5b0a5a2c93cc42"
+    },
     "variflight-pro": {
       "kind": "local_rules",
       "path": "rules/variflight-pro.list",
