@@ -1,0 +1,16 @@
+软件去广告合集 — 第三方版权与授权记录
+
+本组件独立于仓库根目录 MIT 许可，标识为 LicenseRef-ThirdParty-Permission。
+仓库维护者声明已获得转载授权；这不将上游整体重新授权为 MIT，也不授予额外的第三方权利。
+
+所移植文件的原署名：RuCu6、Keywos、fmz200、可莉🅥、QingRex。
+收录来源：thNylHx/Tools，Surge/Module/Blockads.sgmodule。
+固定修订：82d867e32e4378cef4556e324e8a2776493bbe76。
+原文件：https://github.com/thNylHx/Tools/blob/82d867e32e4378cef4556e324e8a2776493bbe76/Surge/Module/Blockads.sgmodule
+上游声明：https://github.com/thNylHx/Tools/blob/82d867e32e4378cef4556e324e8a2776493bbe76/README.md
+
+Belief 表示本仓库维护者。展示元数据、唯一脚本名称、配置兼容性修订和文档由本仓库维护。
+原有第三方版权、署名和授权义务继续适用。外部脚本仍分别受其权利人规定约束。
+
+爱思助手脚本固定为 Keywos/rule 的修订 ca09c0b4c7ebf0cea8cbda84b5d688efe6da2bc4，路径 JS/aisi.js。
+其他运行脚本保持指定的 kelee.one 官方地址；当前检查环境读取该站返回 HTTP 403，未把不可读脚本标记为已审阅。
