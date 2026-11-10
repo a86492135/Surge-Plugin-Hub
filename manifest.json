@@ -2,7 +2,7 @@
   "name": "Surge插件中心",
   "maintainer": "Belief",
   "category": "Belief’s Ad Block",
-  "updated": "2026-11-05",
+  "updated": "2026-11-10",
   "modules": [
     {
       "id": "amap",
@@ -52,6 +52,19 @@
       },
       "updated": "2026-11-05",
       "sha256": "5b9020d0aaa591ecacf0ff7bfd0a0d2a1026427a5051a54f7309454b07f1081e"
+    },
+    {
+      "id": "blockads",
+      "name": "Ads Bolck丨软件去广告合集",
+      "path": "modules/Belief-BlockAds.sgmodule",
+      "version": "0.1.0",
+      "status": "配置兼容性修订版；外部脚本未全部核验，待实机验证",
+      "device_verified": false,
+      "verification": {
+        "level": "static_only"
+      },
+      "updated": "2026-11-10",
+      "sha256": "ca4643380f1d2a2557dabae3ac4356efa7e1d7accc18311e8c5b0a5a2c93cc42"
     }
   ]
 }
