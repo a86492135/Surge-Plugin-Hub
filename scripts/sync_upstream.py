@@ -108,6 +108,24 @@ def load_manual_snapshot(spec, root=ROOT):
     return text, {'kind': 'manual_snapshot', 'path': spec['file'], 'sha256': hashlib.sha256(body).hexdigest()}
 
 
+
+def monitor_snapshot(spec):
+    """Report new upstream bytes for review without replacing the installed snapshot."""
+    expected = spec['reviewed_source_sha256']
+    if not re.fullmatch(r'[a-f0-9]{64}', expected):
+        raise ValueError('Invalid reviewed snapshot digest')
+    try:
+        _, record = fetch_source(spec['monitor_source'])
+        status = 'reviewed' if record['sha256'] == expected else 'needs_review'
+        return {'kind': 'snapshot_monitor', 'status': status, 'record': record}
+    except (urllib.error.URLError, ValueError, KeyError) as error:
+        result = {'kind': 'snapshot_monitor', 'status': 'unavailable',
+                  'reason': type(error).__name__}
+        if isinstance(error, urllib.error.HTTPError):
+            result['http_status'] = error.code
+        return result
+
+
 def preferred_candidates(spec):
     """Prefer the user's Surge directory, then the user's exact Loon URL."""
     policy = spec.get('preferred')
@@ -237,7 +255,7 @@ def refresh_index(config, root=ROOT):
         for item in modules:
             spec = config['modules'][item['id']]
             label = spec.get('label', spec['name'].split('丨')[-1])
-            mode = '手动快照' if spec.get('manual_snapshot') else ('手动维护' if spec.get('local_rules') else '上游检查 + PR')
+            mode = '上游监测 + PR' if spec.get('monitor_source') else ('手动快照' if spec.get('manual_snapshot') else ('手动维护' if spec.get('local_rules') else '上游检查 + PR'))
             state = {'partial_device': '部分实机通过', 'device': '实机通过', 'static_only': '待实机验证'}[item['verification']['level']]
             raw = 'https://raw.githubusercontent.com/' + config['repository'] + '/main/' + item['path']
             docs = spec.get('docs', 'docs/INSTALL.md')
@@ -268,6 +286,8 @@ def main():
     for key, spec in config['modules'].items():
         if spec.get('manual_snapshot'):
             generated[spec['file']], lock['modules'][key] = load_manual_snapshot(spec)
+            if spec.get('monitor_source'):
+                reviews[key] = [monitor_snapshot(spec)]
             continue
         if spec.get('local_rules'):
             source, record = load_local_rules(spec)

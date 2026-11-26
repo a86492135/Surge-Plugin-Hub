@@ -75,7 +75,7 @@
       "name": "Ads Bolck丨软件去广告合集",
       "label": "软件去广告合集",
       "desc": "常用软件去广告",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "file": "modules/Belief-BlockAds.sgmodule",
       "docs": "docs/BLOCKADS.md",
       "manual_snapshot": true,
@@ -100,10 +100,16 @@
         "https://raw.githubusercontent.com/Keywos/rule/ca09c0b4c7ebf0cea8cbda84b5d688efe6da2bc4/JS/aisi.js"
       ],
       "license": "LicenseRef-ThirdParty-Permission",
-      "status": "配置兼容性修订版；外部脚本未全部核验，待实机验证",
+      "status": "规则匹配兼容性更新；外部脚本未全部核验，待实机验证",
       "verification": {
         "level": "static_only"
-      }
+      },
+      "monitor_source": {
+        "repo": "thNylHx/Tools",
+        "ref": "main",
+        "path": "Surge/Module/Blockads.sgmodule"
+      },
+      "reviewed_source_sha256": "b939b8f2dcd1392d69e2a9c0e1c290fab6b4eeabd74d5f9ad5bcc17332883182"
     }
   },
   "dependencies": {

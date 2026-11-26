@@ -29,7 +29,7 @@
     "blockads": {
       "kind": "manual_snapshot",
       "path": "modules/Belief-BlockAds.sgmodule",
-      "sha256": "ca4643380f1d2a2557dabae3ac4356efa7e1d7accc18311e8c5b0a5a2c93cc42"
+      "sha256": "8401efd9947ea3c70a2efccecf52a9eedd6ab1cea4868702625639c5db70a0a8"
     },
     "variflight-pro": {
       "kind": "local_rules",

@@ -20,7 +20,7 @@
 | **高德地图** | `0.3.4`<br>2026-11-05 | 上游检查 + PR | 部分实机通过 | [Raw 模块](https://raw.githubusercontent.com/a86492135/Surge-Plugin-Hub/main/modules/Belief-AMap.sgmodule) · [说明](docs/AMAP.md) |
 | **微博** | `0.1.0`<br>2026-11-04 | 上游检查 + PR | 待实机验证 | [Raw 模块](https://raw.githubusercontent.com/a86492135/Surge-Plugin-Hub/main/modules/Belief-Weibo.sgmodule) · [说明](docs/WEIBO.md) |
 | **飞常准业内版** | `0.1.0`<br>2026-11-05 | 手动维护 | 待实机验证 | [Raw 模块](https://raw.githubusercontent.com/a86492135/Surge-Plugin-Hub/main/modules/Belief-VariFlightPro.sgmodule) · [说明](docs/VARIFLIGHT.md) |
-| **软件去广告合集** | `0.1.0`<br>2026-11-10 | 手动快照 | 待实机验证 | [Raw 模块](https://raw.githubusercontent.com/a86492135/Surge-Plugin-Hub/main/modules/Belief-BlockAds.sgmodule) · [说明](docs/BLOCKADS.md) |
+| **软件去广告合集** | `0.1.1`<br>2026-11-26 | 上游监测 + PR | 待实机验证 | [Raw 模块](https://raw.githubusercontent.com/a86492135/Surge-Plugin-Hub/main/modules/Belief-BlockAds.sgmodule) · [说明](docs/BLOCKADS.md) |
 <!-- MODULES:END -->
 
 统一分类：`Belief’s Ad Block`。点击 **Raw 模块** 获取安装地址，点击 **说明** 查看作用范围与验证记录。
@@ -31,7 +31,7 @@
 
 高德已验证的范围为开屏广告、扫街榜2026入口及双11横幅；**隐藏“探索／长按说话／打车”底栏尚未实现**。微博、飞常准和软件去广告合集仍待实机验证。
 
-**软件去广告合集**覆盖多个 App，采用手动兼容性快照；外部脚本与验证边界见[模块说明](docs/BLOCKADS.md)。
+**软件去广告合集**覆盖多个 App，采用兼容性快照与每日上游监测；外部脚本与验证边界见[模块说明](docs/BLOCKADS.md)。
 
 ## 快速安装
 
@@ -47,7 +47,7 @@
 
 **飞常准业内版**：按用户提供的规则手动维护，日常同步只重建与检查本地规则。
 
-**软件去广告合集**：手动快照维护，日常同步只检查并保留；运行脚本仍依赖模块中的外部地址，不受本仓库 PR 更新门控。
+**软件去广告合集**：每日监测上游文件，有变动时创建或更新审核 PR；保留本地兼容性快照，待审阅后手动移植。外部运行脚本仍不受本仓库 PR 更新门控。
 
 公开模块保持固定地址；更新后在 Surge 中刷新远程模块及相关脚本。模块目录由统一配置生成，随同步 PR 更新。
 
