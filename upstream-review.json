@@ -1,4 +1,18 @@
 {
+  "blockads": [
+    {
+      "kind": "snapshot_monitor",
+      "record": {
+        "path": "Surge/Module/Blockads.sgmodule",
+        "ref": "main",
+        "repo": "thNylHx/Tools",
+        "revision": "1e7ab6767541beb77681c1fada0f3ec312f75c9e",
+        "sha256": "b939b8f2dcd1392d69e2a9c0e1c290fab6b4eeabd74d5f9ad5bcc17332883182",
+        "url": "https://raw.githubusercontent.com/thNylHx/Tools/1e7ab6767541beb77681c1fada0f3ec312f75c9e/Surge/Module/Blockads.sgmodule"
+      },
+      "status": "reviewed"
+    }
+  ],
   "weibo": [
     {
       "kind": "surge",
