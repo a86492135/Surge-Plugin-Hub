@@ -5,6 +5,7 @@ import tempfile
 import unittest
 import sys
 import re
+from unittest import mock
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -115,6 +116,29 @@ class BuildTests(unittest.TestCase):
             target.write_text(text.replace(first,'https://example.invalid/unreviewed.js'))
             with self.assertRaises(ValueError):
                 sync.load_manual_snapshot(entry,root)
+
+    def test_snapshot_monitor_changed_source_keeps_local_module(self):
+        entry = self.config['modules']['blockads']
+        expected = entry['reviewed_source_sha256']
+        before = (ROOT / entry['file']).read_bytes()
+        for digest, status in [(expected, 'reviewed'), ('0' * 64, 'needs_review')]:
+            with mock.patch.object(sync, 'fetch_source', return_value=('unreviewed bytes', {'sha256': digest})):
+                result = sync.monitor_snapshot(entry)
+                self.assertEqual(result['status'], status)
+                self.assertEqual(result['record']['sha256'], digest)
+                self.assertEqual(sync.load_manual_snapshot(entry)[0].encode(), before)
+        with mock.patch.object(sync, 'fetch_source', side_effect=sync.urllib.error.URLError('offline')):
+            self.assertEqual(sync.monitor_snapshot(entry)['status'], 'unavailable')
+        self.assertEqual((ROOT / entry['file']).read_bytes(), before)
+
+    def test_blockads_compatibility_rules(self):
+        entry = self.config['modules']['blockads']
+        rules = [line for line in sync.read_sections((ROOT / entry['file']).read_text())['Rule']
+                 if line.strip() and not line.lstrip().startswith('#')]
+        self.assertEqual(len(rules), 642)
+        self.assertFalse(any('pre-matching' in line or 'extended-matching' in line for line in rules))
+        self.assertFalse(any(line.startswith('DOMAIN,180.76.76.200,') for line in rules))
+        self.assertTrue(any(line.startswith('IP-CIDR,180.76.76.200/32,') for line in rules))
 
     def test_index_catalog_and_verification_share_metadata(self):
         with tempfile.TemporaryDirectory() as temp:
